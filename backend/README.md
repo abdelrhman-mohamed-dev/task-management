@@ -22,52 +22,64 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# Nest App Project Setup Guide
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This guide provides instructions on setting up and running your Nest.js app project. Ensure that you follow each step carefully to have a seamless development environment.
 
-## Installation
+## Prerequisites
+
+- [Docker](https://www.docker.com/) installed on your local machine.
+
+## Setting Up the Database
+
+1. Open a terminal and navigate to your project directory.
+
+2. Run the following bash command to generate and run a PostgreSQL database using Docker:
+
+   ```bash
+   docker-compose up
+   ```
+
+3. Access the PostgreSQL database through [Adminer](https://www.adminer.org/) at `http://localhost:8080`. Use the following credentials:
+
+   - **System**: PostgreSQL
+   - **Server**: postgres
+   - **Username**: postgres
+   - **Password**: postgres
+   - **Database**: testDB
+
+## Installing Dependencies
+
+After setting up the database, install all necessary packages by running the following command in the terminal:
 
 ```bash
-$ npm install
+npm install
 ```
 
-## Running the app
+## Running the Project
+
+Finally, run the Nest.js app with the following command:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run start:dev
 ```
 
-## Test
+This command starts the development server, and you can access your Nest app at `http://localhost:3000`.
 
-```bash
-# unit tests
-$ npm run test
+## Additional Information
 
-# e2e tests
-$ npm run test:e2e
+- The PostgreSQL database details are configured in the `docker-compose.yml` file:
+  ```yaml
+  services:
+    postgres:
+      environment:
+        - POSTGRES_DB=testDB
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+  ```
 
-# test coverage
-$ npm run test:cov
-```
+- Make sure to keep the PostgreSQL container running in the background while working on your Nest app.
 
-## Support
+- Feel free to customize the PostgreSQL settings in the `docker-compose.yml` file to suit your project requirements.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Now you're ready to develop and test your Nest.js app! If you encounter any issues or have questions, refer to the project documentation or seek help from the community. Happy coding!
